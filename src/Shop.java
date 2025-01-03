@@ -33,7 +33,7 @@ public class Shop
         customer = hunter;
 
         Scanner scanner = new Scanner(System.in);
-        if (buyOrSell.equals("B") || buyOrSell.equals("b"))
+        if (buyOrSell.equalsIgnoreCase("b"))
         {
             System.out.println("Welcome to the shop! We have the finest wares in town.");
             System.out.println("Currently we have the following items:");
@@ -50,7 +50,7 @@ public class Shop
                 System.out.print("It'll cost you " + cost + " gold. Buy it (y/n)? ");
                 String option = scanner.nextLine();
 
-                if (option.equals("y") || option.equals("Y"))
+                if (option.equalsIgnoreCase("y"))
                 {
                     buyItem(item);
                 }
@@ -71,7 +71,7 @@ public class Shop
                 System.out.print("It'll get you " + cost + " gold. Sell it (y/n)? ");
                 String option = scanner.nextLine();
 
-                if (option.equals("y") || option.equals("Y"))
+                if (option.equalsIgnoreCase("y"))
                 {
                     sellItem(item);
                 }
@@ -154,23 +154,23 @@ public class Shop
      */
     public int getCostOfItem(String item)
     {
-        if (item.equals("Water"))
+        if (item.equalsIgnoreCase("water"))
         {
             return WATER_COST;
         }
-        else if (item.equals("Rope"))
+        else if (item.equalsIgnoreCase("rope"))
         {
             return ROPE_COST;
         }
-        else if (item.equals("Machete"))
+        else if (item.equalsIgnoreCase("machete"))
         {
             return MACHETE_COST;
         }
-        else if (item.equals("Horse"))
+        else if (item.equalsIgnoreCase("horse"))
         {
             return HORSE_COST;
         }
-        else if (item.equals("Boat"))
+        else if (item.equalsIgnoreCase("boat"))
         {
             return BOAT_COST;
         }
