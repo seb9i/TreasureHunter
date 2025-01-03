@@ -20,13 +20,13 @@ public class Treasure {
     public int dig(){
         int number = ((int) (Math.random() * 15) + 1);
         if (number <= 2){
-            return treasure.get("Necklace");
+            return 9;
         }
         else if (number <= 4){
-            return treasure.get("Bottle");
+            return 7;
         }
         else if (number <= 6){
-            return treasure.get("Stone");
+            return 3;
         }
         else {
             return 0;

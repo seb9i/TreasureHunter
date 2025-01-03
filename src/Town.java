@@ -126,15 +126,21 @@ public class Town
             }
         }
     }
-    public void lookForTreasure(){
-        if (treasure.dig() > 0){
-            printMessage += "You have found treasure! You have made " + treasure.dig() + "!";
-            hunter.changeGold(treasure.dig());
-        }
-        else {
-            System.out.println("You haven't found any treasure.");
+    public void lookForTreasure() {
+        if (treasure != null) {
+            int value = treasure.dig();
+            if (value != 0) {
+                printMessage = "\nYou have found treasure! You have found " + value + "!";
+                hunter.changeGold(value);
+                treasure = null;
+            } else {
+                printMessage = "You haven't found any treasure";
+            }
+        } else {
+            printMessage = "There is no treasure here, maybe in another town?";
         }
     }
+
 
     public String toString()
     {
