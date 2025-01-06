@@ -103,6 +103,9 @@ public class TreasureHunter
         {
             System.out.println();
             System.out.println(currentTown.getLatestNews());
+            if (hunter.getGold() <= 0) {
+                System.exit(1);
+            }
             System.out.println("***");
             System.out.println(hunter);
             System.out.println(currentTown);
@@ -142,10 +145,7 @@ public class TreasureHunter
         else if (choice.equalsIgnoreCase("l"))
         {
             currentTown.lookForTrouble();
-            if (hunter.getGold() <= 0) {
-                System.out.println("\nNo more gold the game is over.");
-            }
-            System.exit(1);
+
         }
         else if (choice.equalsIgnoreCase("e"))
         {
@@ -157,12 +157,6 @@ public class TreasureHunter
         else
         {
             System.out.println("Yikes! That's an invalid option! Try again.");
-        }
-    }
-
-    private void processGold() {
-        if (hunter.getGold() <= 0) {
-            System.out.println("No more gold the game is over.");
         }
     }
 }

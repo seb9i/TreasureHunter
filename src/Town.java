@@ -1,3 +1,4 @@
+
 /**
  * The Town Class is where it all happens.
  * The Town is designed to manage all of the things a Hunter can do in town.
@@ -125,26 +126,38 @@ public class Town
                 hunter.changeGold(-1 * goldDiff);
             }
         }
+        if (hunter.getGold() <= 0) {
+            printMessage += "\nYou ran out of gold, you lost!";
+        }
+
     }
     public void lookForTreasure() {
         if (treasure != null) {
             String value = treasure.dig();
             if (!value.isEmpty()) {
-                printMessage = "\nYou have found treasure! You have found " + value + "!";
-                hunter.addItem(value);
-                treasure = null;
+                if (hunter.hasItemInKit(value)){
+                    printMessage = String.format("You have found a(n) %s, but you already have it inside of your kit.", value);
+                    treasure = null;
+                }
+                else {
+                    printMessage = "\nYou have found treasure! You have found " + value + "!";
+                    hunter.addItem(value);
+                    treasure = null;
+                }
             } else {
                 printMessage = "You haven't found any treasure";
             }
         } else {
             printMessage = "There is no treasure here, maybe in another town?";
         }
+
+
     }
 
 
     public String toString()
     {
-        return "This nice little town is surrounded by " + terrain.getTerrainName() + ".\n";
+        return "This nice little town is surrounded by " + terrain.getTerrainName() + ".";
     }
 
     /**
