@@ -5,6 +5,8 @@
  *
  */
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TreasureHunter
 {
@@ -98,6 +100,13 @@ public class TreasureHunter
     {
         Scanner scanner = new Scanner(System.in);
         String choice = "";
+        ArrayList<String> options = new ArrayList<String>();
+        options.add("(B)uy something at the shop.");
+        options.add("(S)ell something at the shop.");
+        options.add("(L)ook for trouble");
+        options.add("(M)ove on to a different town.");
+        options.add("(H)unt for treasure");
+
 
         while (!(choice.equalsIgnoreCase("e")))
         {
@@ -109,12 +118,13 @@ public class TreasureHunter
             System.out.println("***");
             System.out.println(hunter);
             System.out.println(currentTown);
-            System.out.println("(B)uy something at the shop.");
-            System.out.println("(S)ell something at the shop.");
-            System.out.println("(M)ove on to a different town.");
-            System.out.println("(L)ook for trouble!");
-            System.out.println("(H)unt for treasure!");
-            System.out.println("Give up the hunt and (E)xit.");
+            String leftAlignFormat = "|| %-17s || %-30s || %-30s || %n";
+            System.out.format("//=================[]========================================[]========================\\\\%n");
+            System.out.format("|| Inventory         || Shop                           || Town                           ||%n");
+            System.out.format("\\\\=================[]=======================================[]=========================//%n");
+            for (int i = 0; i < options.size() / 2; i++){
+                System.out.format(leftAlignFormat,null,  options.get(i), options.get(options.size() - i - 1));
+            }
             System.out.println();
             System.out.print("What's your next move? ");
             choice = scanner.nextLine();
