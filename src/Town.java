@@ -22,7 +22,7 @@ public class Town
     {
         this.shop = shop;
         this.terrain = getNewTerrain();
-        this.treasure = new Treasure(9, 4, 1);
+        this.treasure = new Treasure("Necklace", "Heirloom", "Saddle");
 
         // the hunter gets set using the hunterArrives method, which
         // gets called from a client class
@@ -128,10 +128,10 @@ public class Town
     }
     public void lookForTreasure() {
         if (treasure != null) {
-            int value = treasure.dig();
-            if (value != 0) {
+            String value = treasure.dig();
+            if (!value.isEmpty()) {
                 printMessage = "\nYou have found treasure! You have found " + value + "!";
-                hunter.changeGold(value);
+                hunter.addItem(value);
                 treasure = null;
             } else {
                 printMessage = "You haven't found any treasure";

@@ -2,12 +2,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 public class Treasure {
     private HashMap<String, Integer> treasure;
+    private String item1;
+    private String item2;
+    private String item3;
 
-    public Treasure(int weight1, int weight2, int weight3){
-        treasure = new HashMap<String, Integer>();
-        treasure.put("Necklace", weight1);
-        treasure.put("Bottle", weight2);
-        treasure.put("Stone", weight3);
+    public Treasure(String item1, String item2, String item3){
+        this.item1 = item1;
+        this.item2 = item2;
+        this.item3 = item3;
     }
 
     public String getListOfTreasures(){
@@ -17,19 +19,19 @@ public class Treasure {
         }
         return listOfItems;
     }
-    public int dig(){
+    public String dig(){
         int number = ((int) (Math.random() * 15) + 1);
         if (number <= 2){
-            return 9;
+            return item1;
         }
         else if (number <= 4){
-            return 7;
+            return item2;
         }
         else if (number <= 6){
-            return 3;
+            return item3;
         }
         else {
-            return 0;
+            return "";
         }
     }
 
