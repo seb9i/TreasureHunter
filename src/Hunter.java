@@ -22,7 +22,7 @@ public class Hunter
     {
         this.hunterName = hunterName;
         kit = "";
-        gold = 200;
+        gold = 10;
     }
 
     //Accessors

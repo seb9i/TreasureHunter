@@ -50,7 +50,7 @@ public class TreasureHunter
 
         System.out.print("Hard mode? (y/n): ");
         String hard = scanner.nextLine();
-        if (hard.equals("y") || hard.equals("Y"))
+        if (hard.equalsIgnoreCase("y"))
         {
             hardMode = true;
         }
@@ -110,7 +110,7 @@ public class TreasureHunter
             System.out.println("(S)ell something at the shop.");
             System.out.println("(M)ove on to a different town.");
             System.out.println("(L)ook for trouble!");
-            System.out.println("(H)unt for treasure.");
+            System.out.println("(H)unt for treasure!");
             System.out.println("Give up the hunt and (E)xit.");
             System.out.println();
             System.out.print("What's your next move? ");
@@ -142,17 +142,27 @@ public class TreasureHunter
         else if (choice.equalsIgnoreCase("l"))
         {
             currentTown.lookForTrouble();
-        }
-        else if (choice.equalsIgnoreCase("h")){
-            currentTown.lookForTreasure();
+            if (hunter.getGold() <= 0) {
+                System.out.println("\nNo more gold the game is over.");
+            }
+            System.exit(1);
         }
         else if (choice.equalsIgnoreCase("e"))
         {
             System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
         }
+        else if (choice.equalsIgnoreCase("h")) {
+            currentTown.lookForTreasure();
+        }
         else
         {
             System.out.println("Yikes! That's an invalid option! Try again.");
+        }
+    }
+
+    private void processGold() {
+        if (hunter.getGold() <= 0) {
+            System.out.println("No more gold the game is over.");
         }
     }
 }
