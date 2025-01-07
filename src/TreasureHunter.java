@@ -115,17 +115,23 @@ public class TreasureHunter
             if (hunter.getGold() <= 0) {
                 System.exit(1);
             }
-            System.out.println("***");
             System.out.println(hunter);
             System.out.println(currentTown);
-            String leftAlignFormat = "|| %-17s || %-30s || %-30s || %n";
-            System.out.format("//=================[]========================================[]========================\\\\%n");
-            System.out.format("|| Inventory         || Shop                           || Town                           ||%n");
-            System.out.format("\\\\=================[]=======================================[]=========================//%n");
-            for (int i = 0; i < options.size() / 2; i++){
-                System.out.format(leftAlignFormat,null,  options.get(i), options.get(options.size() - i - 1));
-            }
+
+            // Menu
+            System.out.println("//===========[]==================================[]================================\\\\");
+            System.out.println("|| Inventory ||               Shop               ||              Town              ||");
+            System.out.println("|]===========[]==================================[]================================[|");
+            System.out.println("|| 1-XXXXX   || (B)uy something at the shop.     || (H)unt for treasure.           ||");
+            System.out.println("|| 2-XXXXX   || (S)ell something at the shop.    || (M)ove on to a different town. ||");
+            System.out.println("|| 3-XXXXX   ||                                  || (L)ook for trouble             ||");
+            System.out.println("|| 4-XXXXX   ||                                  ||                                ||");
+            System.out.println("|| 5-XXXXX   ||                                  ||                                ||");
+            System.out.println("|| 6-XXXXX   ||                                  ||                                ||");
+            System.out.println("\\\\===========[]==================================[]================================//");
             System.out.println();
+
+
             System.out.print("What's your next move? ");
             choice = scanner.nextLine();
             choice = choice.toUpperCase();
