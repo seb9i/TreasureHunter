@@ -12,6 +12,7 @@ public class Town
     private String printMessage;
     private boolean toughTown;
     private Treasure treasure;
+    private static int amountTreasure;
 
     //Constructor
     /**
@@ -33,6 +34,8 @@ public class Town
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
+
+        amountTreasure = 0;
     }
 
     public String getLatestNews()
@@ -47,7 +50,7 @@ public class Town
     public void hunterArrives(Hunter hunter)
     {
         this.hunter = hunter;
-        printMessage = "╔════════════════════════════════════════════════════════════════════╗\nWelcome to town, " + hunter.getHunterName() + ".";
+        printMessage = "Welcome to town, " + hunter.getHunterName() + ".";
 
         if (toughTown)
         {
@@ -57,7 +60,6 @@ public class Town
         {
             printMessage += "\nWe're just a sleepy little town with mild mannered folk.";
         }
-        printMessage += "\n╚════════════════════════════════════════════════════════════════════╝";
     }
 
     /**
@@ -80,7 +82,7 @@ public class Town
             return true;
         }
 
-        printMessage = "╔════════════════════════════════════════════════════════════════════╗\nYou can't leave town, " + hunter.getHunterName() + ". You don't have a " + terrain.getNeededItem() + ".\n╚════════════════════════════════════════════════════════════════════╝";
+        printMessage = "You can't leave town, " + hunter.getHunterName() + ". You don't have a " + terrain.getNeededItem() + ".";
         return false;
     }
 
@@ -108,11 +110,11 @@ public class Town
 
         if (Math.random() > noTroubleChance)
         {
-            printMessage = "╔════════════════════════════════════════════════════════════════════╗\nYou couldn't find any trouble";
+            printMessage = "You couldn't find any trouble";
         }
         else
         {
-            printMessage = "╔════════════════════════════════════════════════════════════════════╗\nYou want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
+            printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
             int goldDiff = (int)(Math.random() * 10) + 1;
             if (Math.random() > noTroubleChance)
             {
@@ -130,8 +132,6 @@ public class Town
         if (hunter.getGold() <= 0) {
             printMessage += "\nYou ran out of gold, you lost!";
         }
-        printMessage += "\n" +
-                "╚════════════════════════════════════════════════════════════════════╝";
 
     }
     public void lookForTreasure() {
@@ -139,24 +139,25 @@ public class Town
             String value = treasure.dig();
             if (!value.isEmpty()) {
                 if (hunter.hasItemInKit(value)){
-                    printMessage = String.format("╔════════════════════════════════════════════════════════════════════╗\nYou have found a(n) %s, but you already have it inside of your kit.", value);
+                    printMessage = String.format("You have found a(n) %s, but you already have it inside of your kit.", value);
                     treasure = null;
                 }
                 else {
-                    printMessage = "\nYou have found treasure! You have found " + value + "!\n" +
-                            "╚════════════════════════════════════════════════════════════════════╝";
+                    printMessage = "\nYou have found treasure! You have found " + value + "!";
+                    amountTreasure++;
                     hunter.addItem(value);
                     treasure = null;
                 }
             } else {
-                printMessage = "╔════════════════════════════════════════════════════════════════════╗\nYou haven't found any treasure\n" +
-                        "╚════════════════════════════════════════════════════════════════════╝";
+                printMessage = "You haven't found any treasure";
             }
         } else {
-            printMessage = "╔════════════════════════════════════════════════════════════════════╗\nThere is no treasure here, maybe in another town?\n" +
-                    "╚════════════════════════════════════════════════════════════════════╝";
+            printMessage = "There is no treasure here, maybe in another town?";
         }
-
+        if (amountTreasure == 3) {
+            printMessage = "You have found all the treasure";
+            System.exit(1);
+        }
 
     }
 

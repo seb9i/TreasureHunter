@@ -48,7 +48,7 @@ public class TreasureHunter
         String name = scanner.nextLine();
 
         // set hunter instance variable
-        hunter = new Hunter(name, 10);
+        hunter = new Hunter(name);
 
         System.out.print("Hard mode? (y/n): ");
         String hard = scanner.nextLine();
@@ -169,6 +169,7 @@ public class TreasureHunter
         }
         else if (choice.equalsIgnoreCase("h")) {
             currentTown.lookForTreasure();
+            System.out.println(currentTown.getLatestNews());
         }
         else
         {
