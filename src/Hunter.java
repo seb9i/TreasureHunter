@@ -18,11 +18,11 @@ public class Hunter
      *
      * @param hunterName The hunter's name.
      */
-    public Hunter(String hunterName)
+    public Hunter(String hunterName, int startingGold)
     {
         this.hunterName = hunterName;
         kit = "";
-        gold = 1000;
+        gold = startingGold;
     }
 
     //Accessors

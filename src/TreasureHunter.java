@@ -14,6 +14,7 @@ public class TreasureHunter
     private Town currentTown;
     private Hunter hunter;
     private boolean hardMode;
+    private boolean easyMode;
 
     //Constructor
     /**
@@ -47,15 +48,19 @@ public class TreasureHunter
         System.out.print("What's your name, Hunter? ");
         String name = scanner.nextLine();
 
-        // set hunter instance variable
-        hunter = new Hunter(name);
 
-        System.out.print("Hard mode? (y/n): ");
+
+        System.out.print("Hard mode or easy mode? (h/e/n): ");
         String hard = scanner.nextLine();
         if (hard.equalsIgnoreCase("y"))
         {
             hardMode = true;
         }
+        if (hard.equalsIgnoreCase("e")){
+            easyMode = true;
+        }
+        // set hunter instance variable
+        hunter = new Hunter(name, ((easyMode)? 15: 10));
     }
 
     /**
@@ -72,6 +77,13 @@ public class TreasureHunter
 
             // and the town is "tougher"
             toughness = 0.75;
+        }
+        if (easyMode){
+            // in easy mode, you get more money back when you sell items
+            markdown = 0.1;
+
+            // and the town is "weaker"
+            toughness = 0.3;
         }
 
         // note that we don't need to access the Shop object
