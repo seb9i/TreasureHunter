@@ -127,6 +127,9 @@ public class Town
                 printMessage += "That'll teach you to go lookin' fer trouble in MY town! Now pay up!";
                 printMessage += "\nYou lost the brawl and pay " +  goldDiff + " gold.";
                 hunter.changeGold(-1 * goldDiff);
+                if (hunter.getGold() <= 0) {
+                    System.exit(1);
+                }
             }
         }
         if (hunter.getGold() <= 0) {
@@ -205,5 +208,23 @@ public class Town
     {
         double rand = Math.random();
         return (rand < 0.5);
+    }
+
+    public void gamble(int gold, int num) {
+        hunter.changeGold(-1 * gold);
+        int dice1 = (int)((Math.random() * 6) + 1);
+        int dice2 = (int)((Math.random() * 6) + 1);
+        int sum = dice1 + dice2;
+        if (sum == num) {
+            printMessage += "Wow! You've hit the jackpot! You have won " + gold * 2 + " gold!";
+            hunter.changeGold(gold * 2);
+        }
+        else if (Math.abs(sum - num) == 2) {
+            printMessage += "You were close! You have won " + gold + " gold!";
+            hunter.changeGold(gold);
+        }
+        else {
+            printMessage += "What a bummer. You have lost all your gold. Try again";
+        }
     }
 }

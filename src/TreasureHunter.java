@@ -124,9 +124,6 @@ public class TreasureHunter
         {
             System.out.println();
             System.out.println(currentTown.getLatestNews());
-            if (hunter.getGold() <= 0) {
-                System.exit(1);
-            }
             System.out.println(hunter);
             System.out.println(currentTown);
 
@@ -137,7 +134,7 @@ public class TreasureHunter
             System.out.println("|| 1-XXXXX   || (B)uy something at the shop.     || (H)unt for treasure.           ||");
             System.out.println("|| 2-XXXXX   || (S)ell something at the shop.    || (M)ove on to a different town. ||");
             System.out.println("|| 3-XXXXX   ||                                  || (L)ook for trouble             ||");
-            System.out.println("|| 4-XXXXX   ||                                  ||                                ||");
+            System.out.println("|| 4-XXXXX   ||                                  || (C)asino                       ||");
             System.out.println("|| 5-XXXXX   ||                                  ||                                ||");
             System.out.println("|| 6-XXXXX   ||                                  ||                                ||");
             System.out.println("\\\\===========[]==================================[]================================//");
@@ -182,6 +179,23 @@ public class TreasureHunter
         else if (choice.equalsIgnoreCase("h")) {
             currentTown.lookForTreasure();
             System.out.println(currentTown.getLatestNews());
+        }
+        else if (choice.equalsIgnoreCase("c")) {
+            if (hunter.getGold() != 0) {
+                System.out.println("Welcome to Lucky Dice!");
+                Scanner s = new Scanner(System.in);
+                System.out.print("How much gold are you willing to bet?: ");
+                int gold = Integer.parseInt(s.nextLine());
+                System.out.println(gold + " gold. You should've done more.");
+
+                Scanner x = new Scanner(System.in);
+                System.out.print("Pick a number, any number: ");
+                int num = Integer.parseInt(x.nextLine());
+                currentTown.gamble(gold, num);
+            }
+            else {
+                System.out.println("Looks like you don't have enough gold. Try again.");
+            }
         }
         else
         {
