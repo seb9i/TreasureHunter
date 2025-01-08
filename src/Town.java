@@ -136,15 +136,14 @@ public class Town
                 printMessage += "That'll teach you to go lookin' fer trouble in MY town! Now pay up!";
                 printMessage += "\nYou lost the brawl and pay " +  goldDiff + " gold.";
                 hunter.changeGold(-1 * goldDiff);
-                if (hunter.getGold() <= 0) {
-                    System.exit(1);
-                }
+
             }
         }
         if (hunter.getGold() <= 0) {
             printMessage += "\nYou ran out of gold, you lost!";
         }
         printMessage += "\n╚══════════════════════════════════════════════════════════════════════════╝";
+        if (hunter.getGold() <= 0) {System.out.println(getLatestNews()); System.exit(1);};
     }
 
     public void lookForTreasure() {
