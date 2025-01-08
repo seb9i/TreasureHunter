@@ -13,6 +13,7 @@ public class Town
     private boolean toughTown;
     private Treasure treasure;
     private static int amountTreasure;
+    private final boolean CHEAT_MODE;
 
     //Constructor
     /**
@@ -20,9 +21,10 @@ public class Town
      * @param shop The town's shoppe.
      * @param toughness The surrounding terrain.
      */
-    public Town(Shop shop, double toughness)
+    public Town(Shop shop, double toughness, boolean cheatMode)
     {
         this.shop = shop;
+        CHEAT_MODE = cheatMode;
         this.terrain = getNewTerrain();
         this.treasure = new Treasure("Necklace", "Heirloom", "Saddle");
 
@@ -107,16 +109,23 @@ public class Town
         {
             noTroubleChance = 0.33;
         }
+        printMessage += "\n╚══════════════════════════════════════════════════════════════════════════╝";
 
         if (Math.random() > noTroubleChance)
         {
-            printMessage = "You couldn't find any trouble";
+            printMessage = "╔══════════════════════════════════════════════════════════════════════════╗\nYou couldn't find any trouble";
         }
         else
         {
-            printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
+            double winValue = Math.random();
             int goldDiff = (int)(Math.random() * 10) + 1;
-            if (Math.random() > noTroubleChance)
+            if (CHEAT_MODE){
+                winValue = 1;
+                goldDiff = 100;
+
+            }
+            printMessage = "╔══════════════════════════════════════════════════════════════════════════╗\nYou want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
+            if (winValue > noTroubleChance)
             {
                 printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
                 printMessage += "\nYou won the brawl and receive " +  goldDiff + " gold.";
@@ -142,25 +151,26 @@ public class Town
             String value = treasure.dig();
             if (!value.isEmpty()) {
                 if (hunter.hasItemInKit(value)){
-                    printMessage = String.format("You have found a(n) %s, but you already have it inside of your kit.", value);
+                    printMessage = String.format("╔══════════════════════════════════════════════════════════════════════════╗\nYou have found a(n) %s, but you already have it inside of your kit.", value);
                     treasure = null;
                 }
                 else {
-                    printMessage = "\nYou have found treasure! You have found " + value + "!";
+                    printMessage = "╔══════════════════════════════════════════════════════════════════════════╗\nYou have found treasure! You have found " + value + "!";
                     amountTreasure++;
                     hunter.addItem(value);
                     treasure = null;
                 }
             } else {
-                printMessage = "You haven't found any treasure";
+                printMessage = "╔══════════════════════════════════════════════════════════════════════════╗\nYou haven't found any treasure";
             }
         } else {
-            printMessage = "There is no treasure here, maybe in another town?";
+            printMessage = "╔══════════════════════════════════════════════════════════════════════════╗\nThere is no treasure here, maybe in another town?";
         }
         if (amountTreasure == 3) {
-            printMessage = "You have found all the treasure";
+            printMessage = "╔══════════════════════════════════════════════════════════════════════════╗\nYou have found all the treasure!";
             System.exit(1);
         }
+        printMessage += "\n╚══════════════════════════════════════════════════════════════════════════╝";
 
     }
 

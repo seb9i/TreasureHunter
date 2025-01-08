@@ -12,15 +12,17 @@ public class Shop
     private static final int MACHETE_COST = 6;
     private static final int HORSE_COST = 12;
     private static final int BOAT_COST = 20;
+    private final boolean CHEAT_MODE;
 
     // instance variables
     private double markdown;
     private Hunter customer;
 
     //Constructor
-    public Shop(double markdown)
+    public Shop(double markdown, boolean cheatMode)
     {
         this.markdown = markdown;
+        this.CHEAT_MODE = cheatMode;
         customer = null;
     }
 
@@ -85,11 +87,22 @@ public class Shop
      */
     public String inventory()
     {
-        String str = "Water: " + WATER_COST + " gold\n";
-        str += "Rope: " + ROPE_COST + " gold\n";
-        str += "Machete: " + MACHETE_COST + " gold\n";
-        str += "Horse: " + HORSE_COST + " gold\n";
-        str += "Boat: " + BOAT_COST + " gold\n";
+        String str = "";
+        if (CHEAT_MODE) {
+            str += "Water: " + 1 + " gold\n";
+            str += "Rope: " + 1 + " gold\n";
+            str += "Machete: " + 1 + " gold\n";
+            str += "Horse: " + 1 + " gold\n";
+            str += "Boat: " + 1 + " gold\n";
+        }
+        else{
+            str += "Water: " + WATER_COST + " gold\n";
+            str += "Rope: " + ROPE_COST + " gold\n";
+            str += "Machete: " + MACHETE_COST + " gold\n";
+            str += "Horse: " + HORSE_COST + " gold\n";
+            str += "Boat: " + BOAT_COST + " gold\n";
+        }
+
 
         return str;
     }
@@ -154,30 +167,36 @@ public class Shop
      */
     public int getCostOfItem(String item)
     {
-        if (item.equalsIgnoreCase("water"))
-        {
-            return WATER_COST;
+        if (CHEAT_MODE) {
+            return 1;
         }
-        else if (item.equalsIgnoreCase("rope"))
-        {
-            return ROPE_COST;
+        else {
+            if (item.equalsIgnoreCase("water"))
+            {
+                return WATER_COST;
+            }
+            else if (item.equalsIgnoreCase("rope"))
+            {
+                return ROPE_COST;
+            }
+            else if (item.equalsIgnoreCase("machete"))
+            {
+                return MACHETE_COST;
+            }
+            else if (item.equalsIgnoreCase("horse"))
+            {
+                return HORSE_COST;
+            }
+            else if (item.equalsIgnoreCase("boat"))
+            {
+                return BOAT_COST;
+            }
+            else
+            {
+                return 0;
+            }
         }
-        else if (item.equalsIgnoreCase("machete"))
-        {
-            return MACHETE_COST;
-        }
-        else if (item.equalsIgnoreCase("horse"))
-        {
-            return HORSE_COST;
-        }
-        else if (item.equalsIgnoreCase("boat"))
-        {
-            return BOAT_COST;
-        }
-        else
-        {
-            return 0;
-        }
+
     }
 
     /**
