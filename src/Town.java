@@ -135,8 +135,8 @@ public class Town
         if (hunter.getGold() <= 0) {
             printMessage += "\nYou ran out of gold, you lost!";
         }
-
     }
+
     public void lookForTreasure() {
         if (treasure != null) {
             String value = treasure.dig();
@@ -210,6 +210,7 @@ public class Town
         return (rand < 0.5);
     }
 
+    // Plays the Lucky Dice game
     public void gamble(int gold, int num) {
         hunter.changeGold(-1 * gold);
         int dice1 = (int)((Math.random() * 6) + 1);

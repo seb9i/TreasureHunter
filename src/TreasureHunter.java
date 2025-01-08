@@ -132,7 +132,6 @@ public class TreasureHunter
             System.out.println(currentTown.getLatestNews());
             System.out.println(hunter);
             System.out.println(currentTown);
-
             // Menu
             System.out.println("//===========[]==================================[]================================\\\\");
             System.out.println("|| Inventory ||               Shop               ||              Town              ||");
