@@ -227,15 +227,15 @@ public class Town
         int dice2 = (int)((Math.random() * 6) + 1);
         int sum = dice1 + dice2;
         if (sum == num) {
-            printMessage += "Wow! You've hit the jackpot! You have won " + gold * 2 + " gold!";
+            System.out.println("\nWow! You've hit the jackpot! You have won " + gold * 2 + " gold!");
             hunter.changeGold(gold * 2);
         }
         else if (Math.abs(sum - num) == 2) {
-            printMessage += "You were close! You have won " + gold + " gold!";
+            System.out.println("\nYou were close! You have won " + gold + " gold!");
             hunter.changeGold(gold);
         }
         else {
-            printMessage += "What a bummer. You have lost all your gold. Try again";
+            System.out.println("\nWhat a bummer. You have lost all your gold. Try again");
         }
     }
 }

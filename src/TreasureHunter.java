@@ -189,16 +189,25 @@ public class TreasureHunter
         }
         else if (choice.equalsIgnoreCase("c")) {
             if (hunter.getGold() != 0) {
-                System.out.println("Welcome to Lucky Dice!");
+                System.out.println("\nWelcome to Lucky Dice!");
                 Scanner s = new Scanner(System.in);
                 System.out.print("How much gold are you willing to bet?: ");
                 int gold = Integer.parseInt(s.nextLine());
-                System.out.println(gold + " gold. You should've done more.");
-
-                Scanner x = new Scanner(System.in);
-                System.out.print("Pick a number, any number: ");
-                int num = Integer.parseInt(x.nextLine());
-                currentTown.gamble(gold, num);
+                if (gold > hunter.getGold()) {
+                    System.out.println("I know your tricks! Try again.");
+                }
+                else {
+                    if (gold < hunter.getGold()) {
+                        System.out.println(gold + " gold. Don't be a cheapskate.");
+                    }
+                    else {
+                        System.out.println("Now this is a good bet!");
+                    }
+                    Scanner x = new Scanner(System.in);
+                    System.out.print("Pick a number, any number: ");
+                    int num = Integer.parseInt(x.nextLine());
+                    currentTown.gamble(gold, num);
+                }
             }
             else {
                 System.out.println("Looks like you don't have enough gold. Try again.");
