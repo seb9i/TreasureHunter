@@ -144,6 +144,7 @@ public class Town
         if (hunter.getGold() <= 0) {
             printMessage += "\nYou ran out of gold, you lost!";
         }
+        printMessage += "\n╚══════════════════════════════════════════════════════════════════════════╝";
     }
 
     public void lookForTreasure() {
