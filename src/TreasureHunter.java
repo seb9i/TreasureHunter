@@ -68,7 +68,7 @@ public class TreasureHunter
         }
 
         // set hunter instance variable
-        hunter = new Hunter(name, ((easyMode)? 15: 10));
+        hunter = new Hunter(name, ((easyMode)? 15: 1000));
     }
 
     /**
@@ -138,7 +138,7 @@ public class TreasureHunter
             System.out.println("//===========[]==================================[]================================\\\\");
             System.out.println("|| Inventory ||               Shop               ||              Town              ||");
             System.out.println("|]===========[]==================================[]================================[|");
-            System.out.println("|| 1-XXXXX   || (B)uy something at the shop.     || (H)unt for treasure.           ||");
+            System.out.println("|| 1-" + currentTown.getLuck() + "%      || (B)uy something at the shop.     || (H)unt for treasure.           ||");
             System.out.println("|| 2-XXXXX   || (S)ell something at the shop.    || (M)ove on to a different town. ||");
             System.out.println("|| 3-XXXXX   ||                                  || (L)ook for trouble             ||");
             System.out.println("|| 4-XXXXX   ||                                  || (C)asino                       ||");
@@ -210,7 +210,7 @@ public class TreasureHunter
                 }
             }
             else {
-                System.out.println("Looks like you don't have enough gold. Try again.");
+                System.out.println("Looks like you don't have enough gold. Look for some more.");
             }
         }
         else

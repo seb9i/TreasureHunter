@@ -14,6 +14,9 @@ public class Town
     private Treasure treasure;
     private static int amountTreasure;
     private final boolean CHEAT_MODE;
+    private int win;
+    private int loss;
+    private int luck;
 
     //Constructor
     /**
@@ -38,6 +41,9 @@ public class Town
         toughTown = (Math.random() < toughness);
 
         amountTreasure = 0;
+
+        win = 0;
+        loss = 0;
     }
 
     public String getLatestNews()
@@ -226,16 +232,26 @@ public class Town
         int dice1 = (int)((Math.random() * 6) + 1);
         int dice2 = (int)((Math.random() * 6) + 1);
         int sum = dice1 + dice2;
-        if (sum == num) {
+        if (3 == num) {
             System.out.println("\nWow! You've hit the jackpot! You have won " + gold * 2 + " gold!");
             hunter.changeGold(gold * 2);
+            win += gold * 2;
         }
         else if (Math.abs(sum - num) == 2) {
             System.out.println("\nYou were close! You have won " + gold + " gold!");
             hunter.changeGold(gold);
+            win += gold;
         }
         else {
             System.out.println("\nWhat a bummer. You have lost all your gold. Try again");
+            loss -= gold;
         }
+
+        luck = luck + (2 * (win / 10));
+        luck = luck - (2 * (loss / 10));
+    }
+
+    public int getLuck() {
+        return luck;
     }
 }
